@@ -22,6 +22,14 @@ pipeline {
                 echo "Choice : ${params.BOOLEAN}"
                 echo "Choice : ${params.DEVLOPER}"
 
+                sh '''
+                
+                echo "Choice : ${SELECT}"
+                echo "Choice : ${BOOLEAN}"
+                echo "Choice : ${DEVLOPER}"
+
+                '''
+
             }
         }
 
