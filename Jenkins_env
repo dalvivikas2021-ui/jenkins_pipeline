@@ -1,0 +1,44 @@
+
+pipeline {
+    agent none
+
+  environment {
+    DOCKER_USER = 'vikasdalvi'
+    AWS_ACCESS_KEY='ERWER234234324'
+ 
+    }
+
+    stages {
+        stage('Stage 1') {
+
+            // agent {label 'slave_one'}// lable specific build
+            // agent {label 'slave_one && slave_two'}// lable specific build
+            // agent {label 'slave_one || slave_two'}// lable specific build
+            agent {label '!master'}
+
+            steps {
+                echo 'Hello from Stage 1!'
+
+                echo "DOCKER_USER : $DOCKER_USER"
+                echo "AWS_ACCESS_KEY : $AWS_ACCESS_KEY"
+         
+
+                sh '''
+                env
+                echo "DOCKER_USER : $DOCKER_USER"
+                echo "AWS_ACCESS_KEY : $AWS_ACCESS_KEY"
+          
+
+                '''
+
+            }
+        }
+
+        stage('Stage 2') {
+            agent {label 'slave_two'}
+            steps {
+                echo 'Hello from Stage 2! for prod'
+            }
+        }
+    }
+}
