@@ -1,0 +1,48 @@
+
+
+pipeline {
+    agent none
+
+    stages {
+        stage('Stage 1') {
+
+           
+            agent {label '!master'}
+
+            steps {
+                echo 'executing stage one'    
+            }
+        }
+
+        stage('Stage 2 - parallel testing') {
+            agent {label 'slave_two'}
+
+            parallel{
+
+                stage('stage-parallel one')
+                {
+                    steps{
+                    echo 'executing parallely'
+                    }
+                }
+
+                stage('stage-parallel two')
+                {
+                    steps{
+                    echo 'executing parallely'
+                    }
+                }
+
+            }
+           
+        }
+
+        stage('stage - Final')
+        {
+            steps{
+
+                echo 'Executing final..!!'
+            }
+        }
+    }
+}
