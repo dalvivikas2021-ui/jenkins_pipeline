@@ -1,0 +1,35 @@
+pipeline {
+    agent none
+
+  parameters {
+  choice choices: ['dev', 'uat', 'prod'], name: 'SELECT'
+  booleanParam 'BOOLEAN'
+  string defaultValue: 'Vikas', name: 'DEVLOPER'
+    }
+
+    stages {
+        stage('Stage 1') {
+
+            // agent {label 'slave_one'}// lable specific build
+            // agent {label 'slave_one && slave_two'}// lable specific build
+            // agent {label 'slave_one || slave_two'}// lable specific build
+            agent {label '!master'}
+
+            steps {
+                echo 'Hello from Stage 1!'
+
+                echo "Choice : ${params.SELECT}"
+                echo "Choice : ${params.BOOLEAN}"
+                echo "Choice : ${params.DEVLOPER}"
+
+            }
+        }
+
+        stage('Stage 2') {
+            agent {label 'slave_two'}
+            steps {
+                echo 'Hello from Stage 2! for prod'
+            }
+        }
+    }
+}
