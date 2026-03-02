@@ -1,13 +1,16 @@
 pipeline {
-    agent any
+    agent {label 'slave_one'}
 
     stages {
         stage('Stage 1') {
+
+            // lable specific build
             steps {
                 echo 'Hello from Stage 1!'
 
                 sh '''
                 #!/bin/bash
+                ls lrt
                 sleep 5
                 echo 'This is Linux command for prod'
 
