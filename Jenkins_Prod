@@ -10,7 +10,7 @@ pipeline {
 
                 sh '''
                 #!/bin/bash
-                ls lrt
+                ls 
                 sleep 5
                 echo 'This is Linux command for prod'
 
