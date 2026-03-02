@@ -15,7 +15,7 @@ pipeline {
         }
 
         stage('Stage 2 - parallel testing') {
-            agent {label 'slave_two'}
+            // agent {label 'slave_two'}
 
             parallel{
 
