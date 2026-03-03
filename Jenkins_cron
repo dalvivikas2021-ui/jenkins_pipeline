@@ -1,0 +1,44 @@
+
+pipeline {
+    agent none
+
+    triggers {
+        cron('H/2 * * * *')
+    }
+
+    environment {
+        CURRENT_ENV = 'proda'
+
+    }
+
+    stages {
+        stage('CHECKOUT_REPOA') {
+
+            agent {label '!master'}
+
+            steps {
+               checkout(
+                scmGit(
+                    branches: [[name: '*/main']],
+                    extensions: [],
+                    userRemoteConfigs: [[
+                        credentialsId: 'jenkins-git',
+                        url: 'https://github.com/dalvivikas2021-ui/itdefined-demo.git'
+                    ]]
+                )
+            )
+
+            }
+        }
+
+        
+
+        stage('stage - Final')
+        {
+            steps{
+
+                echo 'Executing final..!!'
+            }
+        }
+    }
+}
