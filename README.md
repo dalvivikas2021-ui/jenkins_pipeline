@@ -1,3 +1,2 @@
 # jenkins_pipeline
-Added pollscm..!!
-!!!!
+Added pollscm..!!!!
