@@ -4,9 +4,9 @@ pipeline {
     stages {
         stage('Stage 1') {
 
-            agent {label 'slave_one'}// lable specific build
-            agent {label 'slave_one && slave_two'}// lable specific build
-            agent {label 'slave_one || slave_two'}// lable specific build
+            // agent {label 'slave_one'}// lable specific build
+            // agent {label 'slave_one && slave_two'}// lable specific build
+            // agent {label 'slave_one || slave_two'}// lable specific build
             agent {label '!master'}
 
             steps {

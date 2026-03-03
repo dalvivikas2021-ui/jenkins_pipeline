@@ -1,0 +1,35 @@
+
+
+
+pipeline {
+    agent none
+
+    stages {
+        stage('Stage 1') {
+
+           
+            agent {label '!master'}
+
+            steps {
+                catchError(buildResult:'SUCCESS' ,stageResult:'FAIL' ){
+                echo 'executing stage one'    
+                sh '''
+                echo 'Executing stage one'
+                sleep 15
+                exit 1
+                '''
+                }
+            }
+        }
+
+        
+
+        stage('stage - Final')
+        {
+            steps{
+
+                echo 'Executing final..!!'
+            }
+        }
+    }
+}

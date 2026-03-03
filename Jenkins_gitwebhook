@@ -1,0 +1,40 @@
+pipeline {
+    agent none
+
+    triggers {
+        pollSCM('H/2 * * * *')
+    }
+
+    environment {
+        CURRENT_ENV = 'proda'
+
+    }
+
+    stages {
+        stage('CHECKOUT_REPOA') {
+
+            agent {label '!master'}
+
+            steps {
+                checkout scmGit
+                (
+                branches: [[name: '*/main']], 
+                extensions: [], 
+                userRemoteConfigs: 
+                [[credentialsId: 'dalvivikas2021-ui', 
+                url: 'https://github.com/dalvivikas2021-ui/itdefined-demo.git']]
+                )
+            }
+        }
+
+        
+
+        stage('stage - Final')
+        {
+            steps{
+
+                echo 'Executing final..!!'
+            }
+        }
+    }
+}
