@@ -21,7 +21,7 @@ pipeline {
                     branches: [[name: '*/main']],
                     extensions: [],
                     userRemoteConfigs: [[
-                        credentialsId: 'dalvivikas2021-ui',
+                        credentialsId: 'jenkins-git',
                         url: 'https://github.com/dalvivikas2021-ui/itdefined-demo.git'
                     ]]
                 )
