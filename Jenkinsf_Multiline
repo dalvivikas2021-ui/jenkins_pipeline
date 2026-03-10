@@ -8,6 +8,26 @@ pipeline {
 
     stages {
 
+        stage('Identify branch'){
+
+            steps {
+                script {
+                    // Jenkins automatically sets env.BRANCH_NAME in multibranch pipelines
+                    echo "Triggered by branch: ${env.BRANCH_NAME}"
+
+                    if (env.BRANCH_NAME == 'main') {
+                        echo "main branch"
+                    } else if (env.BRANCH_NAME == 'release') {
+                        echo "release branch"
+                    } else {
+                        echo "feature branch"
+                    }
+                }
+            }
+
+        }
+
+
         stage('build'){
 
             steps
